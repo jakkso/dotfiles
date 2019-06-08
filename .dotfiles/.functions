@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+###############
+## Utilities ##
+###############
+
+# Create a new directory and enter it
+mk() {
+  mkdir -p "$@" && cd "$@"
+}
+
+copyssh() {
+  pbcopy < $HOME/.ssh/id_rsa.pub
+}
+
+#function manpdf() {
+# man -t "${1}" | xdg-open -f -a /Applications/Preview.app/
+#}
+
+## Media Utils ##
+
+mp3() {
+  python3 /home/lex/bin/mp3-tagger/youtube-dl-integration.py
+}
+
+convertwebm () {
+ ffmpeg -i $1 -vcodec  libvpx-vp9 -b:v 1M -acodec libvorbis $2
+}
+
+pd() {
+  podd download
+  /home/lex/tools/refresh-plex-podcasts.sh
+}
+
+
+
+## System admin utils ##
+
+update() {
+  sudo apt update
+  sudo apt upgrade -Y
+  sudo apt autoremove
+  sudo reboot now
+}
+
+
+## Network Utils ##
+
+
+port() {
+  sudo netstat -ltnp | grep -w ':$1'
+}
+
+portcheck() {
+	re='^[0-9]+$'
+	reserved=1024
+	for port in "$@"
+		do
+			if ! [[ $port =~ $re ]]; then
+				echo "Error: not a number: $port"
+			elif [[ $port -le $reserved  ]]; then
+				# echo "port less than 1024"
+				sudo lsof -nP -i4TCP:$port | grep LISTEN
+			else
+				# echo "port greater than 1024"
+				lsof -nP -i4TCP:$port | grep LISTEN
+			fi
+		done
+}
+
+## Git ##
+gitinit() {
+  git init
+  touch .gitignore
+  git add .gitignore *
+}
+
+dvolume() {
+  local volume volumes_to_list=${1:-$(docker volume ls --quiet)}
+  for volume in $volumes_to_list; do
+    sudo ls -lRa "$(docker volume inspect --format '{{ .Mountpoint }}' "$volume")"
+    echo
+  done
+}
+
+###############
+## Minecraft ##
+###############
+
+mcbackup() {
+  echo 'Saving'
+  date
+  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
+}
+
+mcrestore() {
+  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
+}
+
+mcautorun() {
+  while true; do
+    mcbackup;
+    sleep 60;
+  done
+}
+
+
+
+
+
