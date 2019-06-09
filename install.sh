@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/
+git clone https://github.com/jakkso/dotfiles.git
 cd dotfiles
 cp -r ./.gitignore ./.bash_profile ./.dotfiles/ ~
 
