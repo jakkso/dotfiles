@@ -2,9 +2,6 @@
 
 git clone https://github.com/
 cd dotfiles
-cp -r .dotfiles/ ~
-cd ~/.dotfiles/
-cp .bash_profile ~
-cp .gitignore ~
+cp -r ./.gitignore ./.bash_profile ./.dotfiles/ ~
 
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
