@@ -38,7 +38,7 @@ pd() {
 
 update() {
   sudo apt update
-  sudo apt upgrade -Y
+  sudo apt upgrade -y
   sudo apt autoremove
   sudo reboot now
 }
