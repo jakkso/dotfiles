@@ -20,7 +20,7 @@ copyssh() {
 ## Media Utils ##
 
 mp3() {
-  python3 /home/lex/bin/mp3-tagger/youtube-dl-integration.py
+  python3 /home/lex/bin/mp3-tagger/youtube-dl-integration.py $@
 }
 
 convertwebm () {
