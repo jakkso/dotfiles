@@ -1,32 +1,3 @@
-#!/bin/sh
-
-echo "Setting up your Mac..."
-
-# Check for Homebrew and install if we don't have it
-if test ! $(which brew); then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-# Update Homebrew recipes
-brew update
-
-# Install all our dependencies with bundle (See Brewfile)
-brew tap homebrew/bundle
-brew bundle
-
-# Git-so-diff configuration
-source ../git-so-diff-install.sh
-
-
-# Install global NPM packages
-npm install --global yarn
-
-# Install python and set global version
-pyenv install 3.7.0
-pyenv global 3.7.0
-
-# Set macOS preferences
-# We will run this last because this will reload the shell
 # Thanks to Mathias Bynens! https://mths.be/macos
 
 # Ask for the administrator password upfront
@@ -288,6 +259,3 @@ defaults write org.shiftitapp.ShiftIt multipleActionsCycleWindowSizes NO
 
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
-
-
-

@@ -8,6 +8,10 @@ export PATH=$PATH:$HOME/bin/vault
 export PATH=$PATH:/usr/local/go/bin
 export EDITOR=nano
 
+# ffmpeg PATH variables
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+
 # Setup pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
