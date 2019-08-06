@@ -1,0 +1,8 @@
+###################
+## SSH Shortcuts ##
+###################
+
+alias lex='ssh lex'
+alias home='ssh fattie'
+alias pi='ssh pi'
+

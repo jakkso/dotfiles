@@ -1,0 +1,13 @@
+ manpdf() {
+ man -t "${1}" | open -f -a /Applications/Preview.app/
+}
+
+
+function tojakk {
+scp -P 45000 $1 lex@192.168.1.64:$2
+}
+
+function fromjakk {
+scp -P 45000 lex@192.168.1.64:$1 $2
+}
+
