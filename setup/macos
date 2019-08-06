@@ -258,4 +258,4 @@ chsh -s /usr/local/bin/bash
 defaults write org.shiftitapp.ShiftIt multipleActionsCycleWindowSizes NO
 
 
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+colorEcho "Done. Note that some of these changes require a logout/restart to take effect."
