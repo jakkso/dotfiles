@@ -1,0 +1,43 @@
+###############
+## Minecraft ##
+###############
+
+mcbackup() {
+  echo 'Saving'
+  date
+  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
+}
+
+mcrestore() {
+  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
+}
+
+mcautorun() {
+  while true; do
+    mcbackup;
+    sleep 60;
+  done
+}
+
+
+######################
+## System Utilities ##
+######################
+
+update() {
+  sudo apt update
+  sudo apt upgrade -y
+  sudo apt autoremove
+  sudo reboot now
+}
+
+
+#################
+## Media Utils ##
+#################
+
+pd() {
+  podd download
+  /home/lex/tools/refresh-plex-podcasts.sh
+}
+

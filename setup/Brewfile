@@ -1,0 +1,54 @@
+# Taps
+tap 'caskroom/cask'
+tap 'caskroom/eid'
+tap 'caskroom/fonts'
+tap 'caskroom/versions'
+
+# Install GNU core utilities (those that come with macOS are outdated)
+brew 'coreutils'
+
+# Install Bash 4
+brew 'bash'
+
+# Install more recent versions of some macOS tools
+brew 'grep'
+
+# Install Binaries
+brew 'git'
+brew 'mas'
+brew 'node'
+brew 'wget'
+
+# Development
+brew 'tig'
+brew 'pyenv'
+brew 'pandoc'
+brew 'diff-so-fancy'
+
+# Additional tools.
+brew 'archey'
+brew 'youtube-dl'
+
+# Cask apps
+cask 'dropbox'
+cask 'etcher'
+cask 'goland'
+cask 'gpgtools'
+cask 'keepassx'
+cask 'plex-home-theater'
+cask 'private-internet-access'
+cask 'pycharm'
+cask 'shiftit'
+cask 'sonos'
+cask 'sqlitestudio'
+cask 'transmission'
+cask 'virtualbox'
+cask 'virtualbox-extension-pack'
+cask 'vlc'
+cask 'webstorm'
+cask 'iterm2'
+
+# App Store Apps
+mas 'Xcode', id: 497799835
+mas 'Pages', id: 409201541
+mas 'Numbers', id: 409203825

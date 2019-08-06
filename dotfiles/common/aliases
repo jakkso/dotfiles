@@ -4,15 +4,12 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ...="cd ../../.."
 
-# Fix my mistakes, as they happen
+# Fix my typos, as they happen
 alias sl="ls"
 alias la="ls"
 
 # set program options
 alias nano="nano -c"
-alias untar="tar -zxvf $@"
-
-alias myip="ifconfig | grep 'inet ' | grep -v 127.0.0.1"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -27,7 +24,7 @@ fi
 alias l="ls -lFh ${colorflag}"
 
 # List all files colorized in long format, excluding . and ..
-alias la="ls -lAF ${colorflag}"
+alias la="ls -lAhF ${colorflag}"
 
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
@@ -44,26 +41,13 @@ alias egrep='egrep --color=auto'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec ${SHELL} -l"
+#########
+## Git ##
+#########
 
-# Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
+alias gs="git status"
 
-
-###########################
-## Application shortcuts ##
-###########################
-
-factorio() {
-  /home/lex/Games/factorio/bin/x64/factorio
-}
-
-pycharm() {
-  /home/lex/bin/pycharm-2019.1.1/bin/pycharm.sh
-}
-
-goland() {
-  /home/lex/bin/GoLand-2019.1/bin/goland.sh
-}
-
+# Enable autocompletion
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi

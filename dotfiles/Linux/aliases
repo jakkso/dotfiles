@@ -1,0 +1,25 @@
+alias pbcopy="xclip -sel clip"
+
+###########################
+## Application shortcuts ##
+###########################
+
+factorio() {
+  /home/lex/Games/factorio/bin/x64/factorio
+}
+
+pycharm() {
+  /home/lex/bin/pycharm-2019.1.1/bin/pycharm.sh
+}
+
+goland() {
+  /home/lex/bin/GoLand-2019.1/bin/goland.sh
+}
+
+###################
+## SSH Shortcuts ##
+###################
+
+alias lappy='ssh lappy'
+alias pi='ssh pi'
+alias grape='ssh grape'
