@@ -18,13 +18,17 @@ colorEcho "Cloning dotfiles..."
 git clone https://github.com/jakkso/dotfiles.git
 
 colorEcho "Setting up dotfiles"
-cd dotfiles
-for FILE in $(ls dotfiles/globals/); do
+cd dotfiles/dotfiles/globals/
+for FILE in $(ls); do
 	rm -rf ~/.$FILE
 	ln -s `realpath $FILE` ~/.$FILE
 done
+cd ..
+ln -s dotfiles/dotfiles ~/.dotfiles
+
 
 if [[ $(uname -s) == Darwin ]]; then
 	colorEcho "Setting up Mac"
+	cd setup
 	source install-mac.sh
 fi
