@@ -23,8 +23,8 @@ for FILE in $(ls); do
 	rm -rf ~/.$FILE
 	ln -s `realpath $FILE` ~/.$FILE
 done
-cd ..
-ln -s dotfiles/dotfiles ~/.dotfiles
+cd ../..
+ln -s $(realpath dotfiles) ~/.dotfiles
 
 
 if [[ $(uname -s) == Darwin ]]; then
