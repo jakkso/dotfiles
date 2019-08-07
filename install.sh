@@ -35,4 +35,7 @@ ln -s $(realpath dotfiles) ~/.dotfiles
 if [[ $(uname -s) == Darwin ]]; then
     colorEcho "Setting up Mac"
     source setup/install-mac.sh
+elif [[ $(uname -s) == Linux ]]; then
+    colorEcho "Setting up Linux"
+    source setup/install-linux.sh
 fi

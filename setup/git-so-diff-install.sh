@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Configure git to use diff-so-fancy
+
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 # Now use better colors than git's default ones
