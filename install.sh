@@ -29,6 +29,6 @@ ln -s dotfiles/dotfiles ~/.dotfiles
 
 if [[ $(uname -s) == Darwin ]]; then
 	colorEcho "Setting up Mac"
-	cd setup
+	cd ../../setup
 	source install-mac.sh
 fi
