@@ -1,25 +1,3 @@
-###############
-## Minecraft ##
-###############
-
-mcbackup() {
-  echo 'Saving'
-  date
-  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
-}
-
-mcrestore() {
-  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
-}
-
-mcautorun() {
-  while true; do
-    mcbackup;
-    sleep 60;
-  done
-}
-
-
 ######################
 ## System Utilities ##
 ######################
@@ -30,14 +8,3 @@ update() {
   sudo apt autoremove
   sudo reboot now
 }
-
-
-#################
-## Media Utils ##
-#################
-
-pd() {
-  podd dl
-  /home/lex/tools/refresh-plex-podcasts.sh
-}
-

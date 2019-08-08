@@ -2,7 +2,7 @@
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
-alias ...="cd ../../.."
+alias ....="cd ../../.."
 
 # Fix my typos, as they happen
 alias sl="ls"
@@ -48,6 +48,12 @@ alias sudo='sudo '
 alias gs="git status"
 
 # Enable autocompletion
-if [ -f ~/.git-completion.bash ]; then
+if [[ -f ~/.git-completion.bash ]]; then
   . ~/.git-completion.bash
 fi
+
+###################
+## SSH Shortcuts ##
+###################
+alias pi='ssh pi'
+alias grape='ssh grape'
