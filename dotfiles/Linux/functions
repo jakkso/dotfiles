@@ -6,5 +6,7 @@ update() {
   sudo apt update
   sudo apt upgrade -y
   sudo apt autoremove
-  sudo reboot now
+  if [[ $1 == r ]]; then
+    sudo reboot now
+  fi
 }
