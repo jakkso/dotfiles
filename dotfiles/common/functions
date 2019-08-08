@@ -39,7 +39,7 @@ sizes() {
 
 # Get weather.  Needs work, specify actual location instead of relying on IP addr
 weather() {
-	curl http://wttr.in/\?m
+	curl http://wttr.in/FNL
 }
 
 
