@@ -8,7 +8,8 @@ for file in `find ~/.dotfiles/$(uname -s)/`; do
 	[[ -f "$file" ]] && source "$file"
 done	
 
-
-if type screenfetch >/dev/null 2>&1; then
+# Second condition checks if shell is interactive
+# If it's missing, then scp fails with all sorts of nonsense.
+if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
   screenfetch
 fi
