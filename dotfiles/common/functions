@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 ###############
@@ -30,14 +31,13 @@ convertwebm () {
 
 
 mp3() {
-  youtube-dl -x --audio-format mp3 --audio-quality $@
+  youtube-dl -f bestaudio -x --audio-format mp3 --audio-quality 0 -o '%(title)s.%(ext)s' $@
 }
 
 sizes() {
   du -xhd1 | sort -n
 }
 
-# Get weather.  Needs work, specify actual location instead of relying on IP addr
 weather() {
 	curl http://wttr.in/FNL
 }
