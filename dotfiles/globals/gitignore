@@ -43,6 +43,7 @@ Thumbs.db
 .vagrant/
 __pycache__/
 node_modules
+venv/*
 .DocumentRevisions-V100
 .fseventsd
 .TemporaryItems
