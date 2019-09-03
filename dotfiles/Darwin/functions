@@ -4,9 +4,14 @@
 }
 
 function tojakk {
-scp -P 45000 $1 lex@192.168.1.64:$2
+  if [[ -d $1 ]]; then
+    dirFlag="-r"
+  else
+    dirFlag=""
+  fi
+scp $dirFlag  -P 45000 $1 lex@192.168.1.64:$2
 }
 
 function fromjakk {
-scp -P 45000 lex@192.168.1.64:$1 $2
+  scp -P 45000 lex@192.168.1.64:$1 $2
 }
