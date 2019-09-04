@@ -9,7 +9,10 @@ function tojakk {
   else
     dirFlag=""
   fi
-scp $dirFlag  -P 45000 $1 lex@192.168.1.64:$2
+  for last; do true; done  # Loop through all arguments to get to final one, which is the destination
+  # You can thank SO for this abomination: 
+  # https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
+  scp $dirFlag  -P 45000 ${*%${!#}} lex@192.168.1.64:$last
 }
 
 function fromjakk {
