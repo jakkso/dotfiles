@@ -4,11 +4,12 @@
 }
 
 function tojakk {
-  if [[ -d $1 ]]; then
-    dirFlag="-r"
-  else
-    dirFlag=""
-  fi
+  dirFlag=""
+  for arg in ${*%${!#}}; do
+    if [[ -d $arg ]]; then
+      dirFlag="-r"    
+    fi
+  done
   for last; do true; done  # Loop through all arguments to get to final one, which is the destination
   # You can thank SO for this abomination: 
   # https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
