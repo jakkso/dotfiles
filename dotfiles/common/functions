@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 ###############
@@ -30,7 +31,7 @@ convertwebm () {
 
 
 mp3() {
-  youtube-dl -x --audio-format mp3 --audio-quality "$@"
+  youtube-dl -f bestaudio -x --audio-format mp3 --audio-quality 0 -o '%(title)s.%(ext)s' $@
 }
 
 sizes() {

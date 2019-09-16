@@ -20,13 +20,14 @@
 *.tar
 *.zip
 
-########################
-## Logs and databases ##
-########################
+############################
+## Logs database & config ##
+############################
 *.log
 *.sql
 *.sqlite
 *.db
+*.ini
 
 ########################
 ## OS generated files ##
@@ -43,6 +44,7 @@ Thumbs.db
 .vagrant/
 __pycache__/
 node_modules
+venv/*
 .DocumentRevisions-V100
 .fseventsd
 .TemporaryItems
