@@ -30,7 +30,7 @@ convertwebm () {
 
 
 mp3() {
-  youtube-dl -x --audio-format mp3 --audio-quality $@
+  youtube-dl -x --audio-format mp3 --audio-quality "$@"
 }
 
 sizes() {
@@ -71,14 +71,12 @@ portcheck() {
 	reserved=1024
 	for port in "$@"
 		do
-			if ! [[ $port =~ $re ]]; then
+			if ! [[ ${port} =~ $re ]]; then
 				echo "Error: not a number: $port"
-			elif [[ $port -le $reserved  ]]; then
-				# echo "port less than 1024"
-				sudo lsof -nP -i4TCP:$port | grep LISTEN
+			elif [[ ${port} -le ${reserved}  ]]; then
+				sudo lsof -nP -i4TCP:${port} | grep LISTEN
 			else
-				# echo "port greater than 1024"
-				lsof -nP -i4TCP:$port | grep LISTEN
+				lsof -nP -i4TCP:${port} | grep LISTEN
 			fi
 		done
 }
@@ -96,7 +94,7 @@ gitinit() {
 
 dvolume() {
   local volume volumes_to_list=${1:-$(docker volume ls --quiet)}
-  for volume in $volumes_to_list; do
+  for volume in ${volumes_to_list}; do
     sudo ls -lRa "$(docker volume inspect --format '{{ .Mountpoint }}' "$volume")"
     echo
   done
