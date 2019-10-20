@@ -20,14 +20,13 @@
 *.tar
 *.zip
 
-############################
-## Logs database & config ##
-############################
+###################
+## Logs database ##
+###################
 *.log
 *.sql
 *.sqlite
 *.db
-*.ini
 
 ########################
 ## OS generated files ##
@@ -61,6 +60,7 @@ Temporary Items
 ##############################
 scratch*
 config.py
+*.ini
 *.env
 
 #############
