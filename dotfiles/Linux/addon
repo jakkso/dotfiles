@@ -1,0 +1,83 @@
+###########################
+## Application Shortcuts ##
+###########################
+
+ch() {
+  $HOME/bin/chromium
+}
+
+rb() {
+  sudo reboot now
+}
+
+kp() {
+  keepassx
+}
+
+pycharm() {
+  $HOME/bin/pycharm-2018.2.8/bin/pycharm.sh
+}
+
+goland() {
+  $HOME/bin/GoLand-2019.1/bin/goland.sh
+}
+
+cedl() {
+  $HOME/bin/cedl/cedl $@
+}
+
+pd() {
+  podd dl
+  $HOME/bin/refresh-plex-podcasts.sh
+}
+
+define() {
+  $HOME/bin/define/define "$@"
+}
+
+timer() {
+   $HOME/bin/timer/timer "$@"
+}
+
+nc-update() {
+  $HOME/bin/nc-update/update
+}
+
+dlpodd() {
+  dir=`pwd`
+  cd /fatjakk/Podcasts/Misc/
+  mp3 "$@" |  '/home/lex/.dotfiles/scripts/dlpodd.py'
+  cd ${dir}
+  $HOME/bin/refresh-plex-podcasts.sh
+}
+
+getLocation() {
+ whois $1 | grep -i -C 10 "country"
+}
+
+###################
+## SSH Shortcuts ##
+###################
+
+alias lappy='ssh lappy'
+
+###############
+## Minecraft ##
+###############
+
+mcbackup() {
+  echo 'Saving'
+  date
+  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
+}
+
+mcrestore() {
+  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
+}
+
+mcautorun() {
+  while true; do
+    mcbackup;
+    sleep 60;
+  done
+}
