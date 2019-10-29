@@ -1,6 +1,9 @@
 ###########################
 ## Application Shortcuts ##
 ###########################
+fact() {
+  $HOME/games/factorio/bin/x64/factorio
+}
 
 ch() {
   $HOME/bin/chromium
@@ -53,6 +56,11 @@ dlpodd() {
 
 getLocation() {
  whois $1 | grep -i -C 10 "country"
+}
+
+cleanPodd() {
+  rm /fatjakk/Podcasts/Misc/*.mp3
+  $HOME/bin/refresh-plex-podcasts.sh
 }
 
 ###################
