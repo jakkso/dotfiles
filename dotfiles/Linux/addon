@@ -1,10 +1,6 @@
 ###########################
 ## Application Shortcuts ##
 ###########################
-fact() {
-  $HOME/games/factorio/bin/x64/factorio
-}
-
 ch() {
   $HOME/bin/chromium
 }
@@ -29,11 +25,6 @@ cedl() {
   $HOME/bin/cedl/cedl $@
 }
 
-pd() {
-  podd dl
-  $HOME/bin/refresh-plex-podcasts.sh
-}
-
 define() {
   $HOME/bin/define/define "$@"
 }
@@ -46,20 +37,35 @@ nc-update() {
   $HOME/bin/nc-update/update
 }
 
+getLocation() {
+ whois $1 | grep -i -C 10 "country"
+}
+
+#####################
+## Podcast Scripts ##
+#####################
+
+pd() {
+  podd dl
+  $HOME/bin/refresh-plex-podcasts.sh
+}
+
+cleanPodd() {
+  rm /fatjakk/Podcasts/Misc/*.mp3
+  $HOME/bin/refresh-plex-podcasts.sh
+}
+
+cleanPeriodicals() {
+  rm /fatjakk/Podcasts/The\ Jimmy\ Dore\ Show/*.mp3
+  rm /fatjakk/Podcasts/Risky\ Business/*.mp3
+  $HOME/bin/refresh-plex-podcasts.sh
+}
+
 dlpodd() {
   dir=`pwd`
   cd /fatjakk/Podcasts/Misc/
   mp3 "$@" |  '/home/lex/.dotfiles/scripts/dlpodd.py'
   cd ${dir}
-  $HOME/bin/refresh-plex-podcasts.sh
-}
-
-getLocation() {
- whois $1 | grep -i -C 10 "country"
-}
-
-cleanPodd() {
-  rm /fatjakk/Podcasts/Misc/*.mp3
   $HOME/bin/refresh-plex-podcasts.sh
 }
 
@@ -88,4 +94,22 @@ mcautorun() {
     mcbackup;
     sleep 60;
   done
+}
+
+
+##############
+## Factorio ##
+##############
+
+fact() {
+  $HOME/games/factorio/bin/x64/factorio
+}
+
+factnote() {
+  file=$HOME/games/factorio/notes.md
+  if [[ $1 = "m" ]]; then
+    mdv ${file}
+  else
+    nano ${file}
+  fi
 }
