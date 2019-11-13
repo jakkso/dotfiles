@@ -101,5 +101,5 @@ mcautorun() {
 #################
 
 light() {
-  /home/lex/bin/tp-link/usage.py "$@"
+  /home/lex/bin/tplink-smartplug/toggle_lights.py "$@"
 }
