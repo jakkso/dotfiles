@@ -96,20 +96,10 @@ mcautorun() {
   done
 }
 
+#################
+## Relay Usage ##
+#################
 
-##############
-## Factorio ##
-##############
-
-fact() {
-  $HOME/games/factorio/bin/x64/factorio
-}
-
-factnote() {
-  file=$HOME/games/factorio/notes.md
-  if [[ $1 = "m" ]]; then
-    mdv ${file}
-  else
-    nano ${file}
-  fi
+light() {
+  /home/lex/bin/tp-link/usage.py "$@"
 }
