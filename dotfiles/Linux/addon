@@ -100,6 +100,6 @@ mcautorun() {
 ## Relay Usage ##
 #################
 
-light() {
-  /home/lex/bin/tplink-smartplug/toggle_lights.py "$@"
-}
+#light() {
+#  /home/lex/bin/tplink-smartplug/toggle_lights.py "$@"
+#}
