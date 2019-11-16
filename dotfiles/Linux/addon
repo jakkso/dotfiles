@@ -51,13 +51,13 @@ pd() {
 }
 
 cleanPodd() {
-  rm /fatjakk/Podcasts/Misc/*.mp3
+  rm /fatjakk/Podcasts/Misc/*.mp3 &>/dev/null
   $HOME/bin/refresh-plex-podcasts.sh
 }
 
 cleanPeriodicals() {
-  rm /fatjakk/Podcasts/The\ Jimmy\ Dore\ Show/*.mp3
-  rm /fatjakk/Podcasts/Risky\ Business/*.mp3
+  rm /fatjakk/Podcasts/The\ Jimmy\ Dore\ Show/*.mp3 &>/dev/null
+  rm /fatjakk/Podcasts/Risky\ Business/*.mp3 &>/dev/null
   $HOME/bin/refresh-plex-podcasts.sh
 }
 
