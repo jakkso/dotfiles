@@ -1,7 +1,12 @@
  # Open manfile in Preview
  manpdf() {
- man -t "${1}" | open -f -a /Applications/Preview.app/
+ man -t "${1}" | open -f -a /System/Applications/Preview.app/
 }
+
+
+###################
+## Network Utils ##
+###################
 
 function tojakk {
   dirFlag=""
@@ -18,4 +23,9 @@ function tojakk {
 
 function fromjakk {
   scp -P 45000 lex@192.168.1.64:$1 $2
+}
+
+
+loadnvm() {
+  source $(brew --prefix nvm)/nvm.sh
 }

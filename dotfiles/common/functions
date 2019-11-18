@@ -120,3 +120,33 @@ path() {
 ngrok() {
   ~/bin/ngrok $@
 }
+
+loadrvm() {
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+}
+
+gitPrompt() {
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    br=`git branch | grep \* | cut -d ' ' -f2`
+  else
+    br=''
+  fi
+  echo $br
+}
+
+git_prompt() {
+  local ref=$(git branch 2>/dev/null | sed -n '/\* /s///p')
+  if [ "$ref" != "" ]
+  then
+    echo "($ref) "
+  fi
+}
+
+
+###################
+## Relay Control ##
+###################
+
+light() {
+  ~/bin/tplink-smartplug/toggle_lights.py "$@"
+}

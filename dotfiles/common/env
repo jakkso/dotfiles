@@ -13,6 +13,11 @@ export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
 # Setup pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
+if command -v pyenv 1>/dev/null 2>&1 && [[ $- == *i* ]]; then
   eval "$(pyenv init -)"
+fi
+
+# Enable git autocompletion
+if [[ -f ~/.git-completion.bash ]]; then
+  . ~/.git-completion.bash
 fi
