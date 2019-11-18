@@ -74,4 +74,3 @@ config.py
 ## Test Coverage ##
 ###################
 htmlcov/*
-

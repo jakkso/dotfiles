@@ -28,4 +28,3 @@ tolappy() {
   # https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
   scp $dirFlag ${*%${!#}} xander@192.168.1.40:$last
 }
-

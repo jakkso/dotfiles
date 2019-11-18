@@ -56,6 +56,7 @@ gifmaker() {
 
 localip() {
   ifconfig | grep 'inet ' | grep -v 127.0.0.1
+    echo "$(redBold)(\$ref) "
 }
 
 # Print external IP
@@ -179,13 +180,13 @@ gitBranch() {
   local ref=$(git branch 2>/dev/null | sed -n '/\* /s///p')
   if [[ "$ref" != "" ]]
   then
-    echo "$(redBold)($ref) "
+    echo "($ref) "
   fi
 }
 
 # Prompt string, used in bash_profile
 prompt() {
- echo "$(green)\h $(blueBold)\w $(gitBranch)$(whiteBold)> $(colorDone)"
+ echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone)"
 }
 
 ###################
