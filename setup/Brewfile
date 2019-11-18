@@ -20,6 +20,8 @@ brew 'node'
 brew 'wget'
 
 # Development
+brew 'node'
+brew 'nvm'
 brew 'tig'
 brew 'pyenv'
 brew 'pandoc'
