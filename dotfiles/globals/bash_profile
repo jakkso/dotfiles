@@ -14,4 +14,4 @@ if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
   screenfetch
 fi
 
-PS1="\[\e[0;32m\]\h \[\e[1;34m\]\w \[\e[1;31m\]\$(git_prompt)\[\e[1;37m\]> \e[m"
+PS1=$(prompt)

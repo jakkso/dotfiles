@@ -54,7 +54,7 @@ gifmaker() {
 ## Network Utilities ##
 #######################
 
-myip() {
+localip() {
   ifconfig | grep 'inet ' | grep -v 127.0.0.1
 }
 
@@ -125,23 +125,60 @@ loadrvm() {
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 }
 
-gitPrompt() {
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    br=`git branch | grep \* | cut -d ' ' -f2`
-  else
-    br=''
-  fi
-  echo $br
+######################
+## Prompt Functions ##
+######################
+
+# Colors
+red() {
+  echo "\[\e[0;31m\]"
 }
 
-git_prompt() {
+redBold() {
+  echo "\[\e[1;31m\]"
+}
+
+green() {
+  echo "\[\e[0;32m\]"
+}
+
+greenBold() {
+  echo "\[\e[1;32m\]"
+}
+
+blue() {
+  echo "\[\e[0;34m\]"
+}
+
+blueBold() {
+  echo "\[\e[1;34m\]"
+}
+
+white() {
+  echo "\[\e[0;37m\]"
+}
+
+whiteBold() {
+  echo "\[\e[1;37m\]"
+}
+
+colorDone() {
+  echo "\e[m"
+}
+
+# Shows what branch you're on if in a git repo
+gitBranch() {
   local ref=$(git branch 2>/dev/null | sed -n '/\* /s///p')
-  if [ "$ref" != "" ]
+  if [[ "$ref" != "" ]]
   then
-    echo "($ref) "
+    echo "$(redBold)($ref) "
   fi
 }
 
+# Prompt string, used in bash_profile
+prompt() {
+ echo "$(green)\h $(blueBold)\w $(gitBranch)$(whiteBold)> $(colorDone)"
+}
 
 ###################
 ## Relay Control ##
