@@ -45,6 +45,10 @@ getLocation() {
 ## Podcast Scripts ##
 #####################
 
+plexupdate() {
+  sudo /opt/plexupdate/plexupdate.sh
+}
+
 pd() {
   podd dl
   $HOME/bin/refresh-plex-podcasts.sh
