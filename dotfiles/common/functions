@@ -172,7 +172,7 @@ whiteBold() {
 }
 
 colorDone() {
-  echo "\e[m"
+  echo "\033[00m"
 }
 
 # Shows what branch you're on if in a git repo
