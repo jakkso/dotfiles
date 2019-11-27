@@ -21,7 +21,7 @@ mk() {
   mkdir -p "$@" && cd "$@"
 }
 
-copysssh() {
+copyssh() {
   pbcopy < "$HOME/.ssh/id_rsa.pub"
 }
 
@@ -42,7 +42,6 @@ weather() {
 	curl http://wttr.in/FNL
 }
 
-
 gifmaker() {
   palette="/tmp/palette.png"
   filters="fps=15,scale=320:-1:flags=lanczos"
@@ -50,9 +49,9 @@ gifmaker() {
   ffmpeg -v warning -i $1 -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y $2
 }
 
-#######################
-## Network Utilities ##
-#######################
+#############
+## Network ##
+#############
 
 localip() {
   ifconfig | grep 'inet ' | grep -v 127.0.0.1
