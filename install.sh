@@ -12,10 +12,12 @@ if [[ $(uname -s) == Linux ]]; then
   colorEcho "Installing essential libs"
 
   packages="build-essential npm nodejs bzip2 libbz2-dev lib32readline7
-  lib32readline-dev libffi-dev libssl1.0-dev sqlite3 libsqlite3-dev git curl"
+  lib32readline-dev libffi-dev libssl1.0-dev sqlite3 libsqlite3-dev git
+   curl zlib1g zlib1g-dev openssl"
+  sudo apt-get build-dep python3.8
 
   sudo apt install ${packages} -y || (colorEcho "Critical package installation failed, see output;  Exiting..." && exit 1)
-  npm install -g diff-so-fancy
+  sudo npm install -g diff-so-fancy
   curl https://pyenv.run | bash
 fi
 
