@@ -10,9 +10,11 @@ colorEcho () {
 
 if [[ $(uname -s) == Linux ]]; then
   colorEcho "Installing essential libs"
-  sudo apt install build-essential npm nodejs bzip2 libbz2-dev \
-    libreadline6 libreadline6-dev libffi-dev libssl1.0-dev \
-    sqlite3 libsqlite3-dev git curl -Y
+
+  packages="build-essential npm nodejs bzip2 libbz2-dev lib32readline7
+  lib32readline-dev libffi-dev libssl1.0-dev sqlite3 libsqlite3-dev git curl"
+
+  sudo apt install ${packages} -y || (colorEcho "Critical package installation failed, see output;  Exiting..." && exit 1)
   npm install -g diff-so-fancy
   curl https://pyenv.run | bash
 fi
@@ -37,9 +39,9 @@ for FILE in $(ls); do
     rm -rf ~/.${FILE}
     ln -s $(realpath ${FILE}) ~/.${FILE}
 done
+ln -s $(realpath dotfiles) $HOME/.dotfiles
 source $HOME/.bash_profile
 cd ../..
-ln -s $(realpath dotfiles) ~/.dotfiles
 if [[ $(uname -s) == Darwin ]]; then
     colorEcho "Setting up Mac..."
     source setup/install-mac.sh
