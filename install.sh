@@ -22,8 +22,8 @@ if [[ $(uname -s) == Linux ]]; then
   nodePkgs="nodejs nodejs-dev npm"
 
   sudo apt update
-  sudo apt install -y ${nodePkgs}
-  sudo apt install -y ${packages} || (colorEcho "Critical package installation failed, see output;  Exiting..." && exit 1)
+  sudo apt install -y ${nodePkgs} || exit 1
+  sudo apt install -y ${packages} || exit 1
   sudo npm install -g diff-so-fancy
   sudo apt upgrade -y
   curl https://pyenv.run | bash
