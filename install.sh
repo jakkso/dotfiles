@@ -8,6 +8,7 @@ colorEcho () {
     printf "${RED} $1${NORMAL}\n"
 }
 
+origDir=$(pwd)
 if [[ $(uname -s) == Linux ]]; then
   colorEcho "Installing essential libs"
 
@@ -41,9 +42,9 @@ for FILE in $(ls); do
     rm -rf ~/.${FILE}
     ln -s $(realpath ${FILE}) ~/.${FILE}
 done
+cd ../..
 ln -s $(realpath dotfiles) $HOME/.dotfiles
 source $HOME/.bash_profile
-cd ../..
 if [[ $(uname -s) == Darwin ]]; then
     colorEcho "Setting up Mac..."
     source setup/install-mac.sh
@@ -51,3 +52,4 @@ elif [[ $(uname -s) == Linux ]]; then
     colorEcho "Setting up Linux..."
     source setup/install-linux.sh
 fi
+cd ${origDir}
