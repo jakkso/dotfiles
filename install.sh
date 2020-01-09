@@ -11,14 +11,15 @@ colorEcho () {
 origDir=$(pwd)
 if [[ $(uname -s) == Linux ]]; then
   colorEcho "Installing essential libs"
-
   packages="build-essential bzip2 curl git
   libbz2-dev libffi-dev liblzma-dev libncurses5-dev libncursesw5-dev
   libreadline-dev libsqlite3-dev libssl-dev llvm make nodejs node-gyp
   npm openssl python-openssl sqlite3 tk-dev wget xz-utils zlib1g zlib1g-dev"
+  sudo apt update
   sudo apt-get build-dep python3.8
   sudo apt install ${packages} -y || (colorEcho "Critical package installation failed, see output;  Exiting..." && exit 1)
   sudo npm install -g diff-so-fancy
+  sudo apt upgrade -y
   curl https://pyenv.run | bash
 fi
 
@@ -51,5 +52,8 @@ if [[ $(uname -s) == Darwin ]]; then
 elif [[ $(uname -s) == Linux ]]; then
     colorEcho "Setting up Linux..."
     source setup/install-linux.sh
+fi
+if [[ -e $HOME/.bashrc ]]; then
+  mv $HOME/.bashrc ~$HOME/.bashrc-backup
 fi
 cd ${origDir}
