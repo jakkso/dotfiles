@@ -1,20 +1,21 @@
-
-#!/usr/bin/env bash
-
 ###############
 ## Utilities ##
 ###############
 
 untar() {
-  tar -zxvf $@
-}
-
-# Combine cd and ls
-cl() {
-  cd $@
-  if [[ $@ ]]; then
-    ls
-  fi  
+  item=`file $@`
+  case ${item} in
+    *"XZ compressed"*)
+      tar -xvf $@
+      ;;
+    *"gzip compress"*)
+      tar -zxvf $@
+      ;;
+    *)
+      echo "Is this a compressed file?"
+      echo ${item}
+      ;;
+  esac
 }
 
 mk() {
@@ -29,7 +30,6 @@ convertwebm () {
  ffmpeg -i $1 -vcodec  libvpx-vp9 -b:v 1M -acodec libvorbis $2
 }
 
-
 mp3() {
   youtube-dl -f bestaudio -x --audio-format mp3 --audio-quality 0 -o '%(title)s.%(ext)s' $@
 }
@@ -39,7 +39,7 @@ sizes() {
 }
 
 weather() {
-	curl http://wttr.in/FNL
+  curl http://wttr.in/FNL
 }
 
 gifmaker() {
@@ -55,7 +55,7 @@ gifmaker() {
 
 localip() {
   ifconfig | grep 'inet ' | grep -v 127.0.0.1
-    echo "$(redBold)(\$ref) "
+  echo "$(redBold)(\$ref) "
 }
 
 # Print external IP
@@ -68,18 +68,18 @@ port() {
 }
 
 portcheck() {
-	re='^[0-9]+$'
-	reserved=1024
-	for port in "$@"
-		do
-			if ! [[ ${port} =~ $re ]]; then
-				echo "Error: not a number: $port"
-			elif [[ ${port} -le ${reserved}  ]]; then
-				sudo lsof -nP -i4TCP:${port} | grep LISTEN
-			else
-				lsof -nP -i4TCP:${port} | grep LISTEN
-			fi
-		done
+    re='^[0-9]+$'
+    reserved=1024
+    for port in "$@"
+        do
+            if ! [[ ${port} =~ $re ]]; then
+                echo "Error: not a number: $port"
+            elif [[ ${port} -le ${reserved}  ]]; then
+                sudo lsof -nP -i4TCP:${port} | grep LISTEN
+            else
+                lsof -nP -i4TCP:${port} | grep LISTEN
+            fi
+        done
 }
 
 
@@ -123,6 +123,14 @@ ngrok() {
 
 loadrvm() {
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+}
+
+shebang() {
+  if [[ $1 = '' ]]; then
+    echo 'Supply filename'
+    return
+  fi
+  echo "#!/usr/bin/env " > $1 && chmod u+x $1 && ${EDITOR} $1
 }
 
 ######################
@@ -185,7 +193,7 @@ gitBranch() {
 
 # Prompt string, used in bash_profile
 prompt() {
- echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone)"
+ echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
 }
 
 ###################

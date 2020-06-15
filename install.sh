@@ -15,7 +15,7 @@ if [[ $(uname -s) == Linux ]]; then
   # Should be everything to get python compiled
   packages="build-essential bzip2 curl git libbz2-dev libffi-dev
   liblzma-dev libncurses5-dev libncursesw5-dev libreadline-dev
-  libsqlite3-dev libssl-dev llvm make npm openssl python-openssl
+  libsqlite3-dev libssl-dev llvm make openssl python-openssl
   sqlite3 tk-dev wget xz-utils zlib1g zlib1g-dev"
 
   # Apt won't figure the dependencies out in a single command or, more likely, I don't care to find out how
