@@ -14,4 +14,4 @@ if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
   screenfetch
 fi
 
-PS1=$(prompt)
+PS1=$(prompt)  # prompt func from `common/functions`

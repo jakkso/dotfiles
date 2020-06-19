@@ -51,51 +51,25 @@ plexupdate() {
 
 pd() {
   podd dl
-  $HOME/bin/refresh-plex-podcasts.sh
+  $HOME/bin/plex/utils.py refresh
 }
 
 cleanPodd() {
   rm /fatjakk/Podcasts/Misc/*.mp3 &>/dev/null
-  $HOME/bin/refresh-plex-podcasts.sh
+  $HOME/bin/plex/utils.py refresh
 }
 
 cleanPeriodicals() {
   rm /fatjakk/Podcasts/The\ Jimmy\ Dore\ Show/*.mp3 &>/dev/null
   rm /fatjakk/Podcasts/Risky\ Business/*.mp3 &>/dev/null
-  $HOME/bin/refresh-plex-podcasts.sh
+  $HOME/bin/plex/utils.py refresh
 }
 
 dlpodd() {
   dir=`pwd`
   cd /fatjakk/Podcasts/Misc/
-  mp3 "$@" |  '/home/lex/.dotfiles/scripts/dlpodd.py'
+  mp3 "$@" |  $HOME/.dotfiles/scripts/dlpodd.py
   cd ${dir}
-  $HOME/bin/refresh-plex-podcasts.sh
+  $HOME/bin/plex/utils.py refresh
 }
 
-###################
-## SSH Shortcuts ##
-###################
-
-alias lappy='ssh lappy'
-
-###############
-## Minecraft ##
-###############
-
-mcbackup() {
-  echo 'Saving'
-  date
-  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
-}
-
-mcrestore() {
-  cp -r ~/.minecraft/saves/main-world ~/.minecraft/backup-saves;
-}
-
-mcautorun() {
-  while true; do
-    mcbackup;
-    sleep 60;
-  done
-}

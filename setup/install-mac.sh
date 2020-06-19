@@ -23,8 +23,8 @@ npm install --global yarn
 # Install python and set global version
 reload
 pyenv update
-pyenv install 3.7.0
-pyenv global 3.7.0
+pyenv install 3.8.0
+pyenv global 3.8.0
 pip install black flake8 requests coverage
 
 # Set macOS preferences
