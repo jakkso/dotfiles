@@ -1,6 +1,20 @@
+#!/usr/bin/env bash
+
 ###############
 ## Utilities ##
 ###############
+
+define() {
+  $HOME/bin/define/define "$@"
+}
+
+getThread() {
+  $HOME/bin/threadDownloader "$@"
+}
+
+cedl() {
+  $HOME/bin/cedl "$@"
+}
 
 untar() {
   item=`file $@`
@@ -127,10 +141,14 @@ loadrvm() {
 
 shebang() {
   if [[ $1 = '' ]]; then
-    echo 'Supply filename'
+    echo '#!/usr/bin/env '
     return
   fi
-  echo "#!/usr/bin/env " > $1 && chmod u+x $1 && ${EDITOR} $1
+  echo "#!/usr/bin/env $2" > $1 && chmod u+x $1 && ${EDITOR} $1
+}
+
+genUUID() {
+ head -c 64 /dev/urandom | base64
 }
 
 ######################
@@ -179,7 +197,7 @@ whiteBold() {
 }
 
 colorDone() {
-  echo "\033[00m"
+  echo "\[\033[00m\]"
 }
 
 # Shows what branch you're on if in a git repo
@@ -193,7 +211,7 @@ gitBranch() {
 
 # Prompt string, used in bash_profile
 prompt() {
- echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
+ echo "$(green)\h $(blueBold)\w $(redBold)  $(gitBranch)$(whiteBold)> $(colorDone) "
 }
 
 ###################
