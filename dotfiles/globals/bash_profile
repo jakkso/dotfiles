@@ -19,4 +19,4 @@ PS1=$(prompt)  # prompt func from `common/functions`
 # Fire up tmux
 
 [[ $- != *i* ]] && return
-[[ -z "$TMUX" && ! -z "$SSH_CLIENT" ]] && exec tmux
+[[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && exec tmux
