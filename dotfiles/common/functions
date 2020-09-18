@@ -211,6 +211,7 @@ gitBranch() {
 
 # Prompt string, used in bash_profile
 prompt() {
+ # The escaped $ prior to gitBranch means that gitBranch is called on each prompt redraw
  echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
 }
 

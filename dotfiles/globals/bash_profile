@@ -15,3 +15,8 @@ if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
 fi
 
 PS1=$(prompt)  # prompt func from `common/functions`
+
+# Fire up tmux
+
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
