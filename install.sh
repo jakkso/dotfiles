@@ -19,7 +19,7 @@ if [[ $(uname -s) == Linux ]]; then
   sqlite3 tk-dev wget xz-utils zlib1g zlib1g-dev"
 
   # Apt won't figure the dependencies out in a single command or, more likely, I don't care to find out how
-  nodePkgs="nodejs nodejs-dev npm"
+  nodePkgs="nodejs libnode-dev npm"
 
   sudo apt update
   sudo apt install -y ${nodePkgs} || exit 1
