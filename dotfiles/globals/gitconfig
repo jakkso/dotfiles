@@ -25,3 +25,5 @@
 [diff-so-fancy]
 	changeHunkIndicators = false
 	stripLeadingSymbols = false
+[init]
+	defaultBranch = master
