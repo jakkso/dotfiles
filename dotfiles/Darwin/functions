@@ -18,14 +18,38 @@ function tojakk {
   for last; do true; done  # Loop through all arguments to get to final one, which is the destination
   # You can thank SO for this abomination: 
   # https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
-  scp $dirFlag  -P 45000 ${*%${!#}} lex@192.168.1.64:$last
+  # switching to just use download dir instead
+  # scp $dirFlag  -P 45000 ${*%${!#}} lex@192.168.1.145:$last 
+  scp $dirFlag  -P 45000 "$@" lex@jakkso.com:/home/lex/downloads
+  echo "$@"
 }
 
 function fromjakk {
-  scp -P 45000 lex@192.168.1.64:$1 $2
+  scp -P 45000 lex@jakkso.com:$1 $2
+}
+
+
+##############
+## Dev Shit ##
+##############
+
+openSitePkgs() {
+  cd /Users/Xander/.pyenv/versions/3.8.2/lib/python3.8/site-packages
+}
+
+localDeploy() {
+  if [[ "$1" = '' ||  $(! test -f "$1") ]]; then
+    echo "Missing file"
+    return
+  else
+    cp "$1" ~/bin
+    scp -P 45000 "$1" lex@192.168.1.64:/home/lex/bin
+  fi
 }
 
 
 loadnvm() {
   source $(brew --prefix nvm)/nvm.sh
 }
+
+
