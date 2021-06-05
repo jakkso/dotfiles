@@ -8,15 +8,12 @@ for file in `find ~/.dotfiles/$(uname -s)/`; do
 	[[ -f "$file" ]] && source "$file"
 done	
 
-# Second condition checks if shell is interactive
-# If it's missing, then scp fails with all sorts of nonsense.
-if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
-  screenfetch
-fi
+# Add $HOME/bin to path
+PATH="$HOME/bin:$PATH"
 
+theme.sh mona-lisa
 PS1=$(prompt)  # prompt func from `common/functions`
-
 # Fire up tmux
-
 [[ $- != *i* ]] && return
-[[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && exec tmux
+[[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && exec tmux -f ~/.config/.tmux.conf
+

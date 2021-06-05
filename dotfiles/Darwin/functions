@@ -21,7 +21,6 @@ function tojakk {
   # switching to just use download dir instead
   # scp $dirFlag  -P 45000 ${*%${!#}} lex@192.168.1.145:$last 
   scp $dirFlag  -P 45000 "$@" lex@jakkso.com:/home/lex/downloads
-  echo "$@"
 }
 
 function fromjakk {

@@ -27,6 +27,7 @@
 *.sql
 *.sqlite
 *.db
+*.rdb
 
 ########################
 ## OS generated files ##
