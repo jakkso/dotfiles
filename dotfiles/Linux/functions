@@ -26,5 +26,5 @@ tolappy() {
   # Loop through all arguments to get to final one, which is the destination
   # You can thank SO for this abomination:
   # https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
-  scp $dirFlag ${*%${!#}} xander@192.168.1.40:$last
+  scp $dirFlag "$@" xander@192.168.1.40:/users/xander/downloads
 }

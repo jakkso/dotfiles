@@ -1,75 +1,11 @@
 ###########################
 ## Application Shortcuts ##
 ###########################
-ch() {
-  $HOME/bin/chromium
-}
-
-rb() {
-  sudo reboot now
-}
-
-kp() {
-  keepassx
-}
-
-pycharm() {
-  $HOME/bin/pycharm-2018.2.8/bin/pycharm.sh
-}
-
-goland() {
-  $HOME/bin/GoLand-2019.1/bin/goland.sh
-}
-
-cedl() {
-  $HOME/bin/cedl/cedl $@
-}
-
-define() {
-  $HOME/bin/define/define "$@"
-}
-
-timer() {
-   $HOME/bin/timer/timer "$@"
-}
-
 nc-update() {
   $HOME/bin/nc-update/update
 }
 
 getLocation() {
  whois $1 | grep -i -C 10 "country"
-}
-
-#####################
-## Podcast Scripts ##
-#####################
-
-plexupdate() {
-  sudo /opt/plexupdate/plexupdate.sh
-}
-
-pd() {
-  podd dl
-  $HOME/bin/plex/utils.py refresh
-}
-
-cleanPodd() {
-  rm /fatjakk/Podcasts/Misc/*.mp3 &>/dev/null
-  $HOME/bin/plex/utils.py refresh
-}
-
-cleanPeriodicals() {
-  rm /fatjakk/Podcasts/The\ Jimmy\ Dore\ Show/*.mp3 &>/dev/null
-  rm /fatjakk/Podcasts/Risky\ Business/*.mp3 &>/dev/null
-  $HOME/bin/plex/utils.py refresh
-}
-
-dlpodd() {
-  dir=`pwd`
-  cd /fatjakk/Podcasts/Misc/
-  mp3 "$@" |  $HOME/.dotfiles/scripts/dlpodd.py
-  cd ${dir}
-  $HOME/bin/plex/utils.py refresh
 }
 

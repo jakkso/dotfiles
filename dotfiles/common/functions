@@ -4,10 +4,6 @@
 ## Utilities ##
 ###############
 
-cedl() {
-  $HOME/bin/cedl "$@"
-}
-
 untar() {
   item=`file $@`
   case ${item} in
@@ -26,10 +22,6 @@ untar() {
 
 mk() {
   mkdir -p "$@" && cd "$@"
-}
-
-copyssh() {
-  pbcopy < "$HOME/.ssh/id_rsa.pub"
 }
 
 convertwebm () {
@@ -116,11 +108,6 @@ reload() {
 # Print each PATH entry on a separate line
 path() {
   echo -e ${PATH//:/\\n}
-}
-
-# Start ngrok
-ngrok() {
-  ~/bin/ngrok $@
 }
 
 loadrvm() {

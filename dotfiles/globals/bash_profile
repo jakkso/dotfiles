@@ -11,9 +11,15 @@ done
 # Add $HOME/bin to path
 PATH="$HOME/bin:$PATH"
 
+# Second condition checks if shell is interactive
+# If it's missing, then scp fails with all sorts of nonsense.
+if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
+  screenfetch -w
+fi
+
 theme.sh mona-lisa
 PS1=$(prompt)  # prompt func from `common/functions`
+
 # Fire up tmux
 [[ $- != *i* ]] && return
 [[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && exec tmux -f ~/.config/.tmux.conf
-
