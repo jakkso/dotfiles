@@ -4,18 +4,6 @@
 ## Utilities ##
 ###############
 
-define() {
-  $HOME/bin/define/define "$@"
-}
-
-getThread() {
-  $HOME/bin/threadDownloader "$@"
-}
-
-cedl() {
-  $HOME/bin/cedl "$@"
-}
-
 untar() {
   item=`file $@`
   case ${item} in
@@ -34,10 +22,6 @@ untar() {
 
 mk() {
   mkdir -p "$@" && cd "$@"
-}
-
-copyssh() {
-  pbcopy < "$HOME/.ssh/id_rsa.pub"
 }
 
 convertwebm () {
@@ -77,25 +61,6 @@ externalip() {
   curl 'https://api.ipify.org'  && echo
 }
 
-port() {
-  sudo netstat -ltnp | grep -w ':$1'
-}
-
-portcheck() {
-    re='^[0-9]+$'
-    reserved=1024
-    for port in "$@"
-        do
-            if ! [[ ${port} =~ $re ]]; then
-                echo "Error: not a number: $port"
-            elif [[ ${port} -le ${reserved}  ]]; then
-                sudo lsof -nP -i4TCP:${port} | grep LISTEN
-            else
-                lsof -nP -i4TCP:${port} | grep LISTEN
-            fi
-        done
-}
-
 
 ###############
 ## Dev Tools ##
@@ -128,11 +93,6 @@ reload() {
 # Print each PATH entry on a separate line
 path() {
   echo -e ${PATH//:/\\n}
-}
-
-# Start ngrok
-ngrok() {
-  ~/bin/ngrok $@
 }
 
 loadrvm() {
@@ -215,10 +175,3 @@ prompt() {
  echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
 }
 
-###################
-## Relay Control ##
-###################
-
-light() {
-  ~/bin/tplink-smartplug/toggle_lights.py "$@"
-}

@@ -11,10 +11,12 @@ done
 # Second condition checks if shell is interactive
 # If it's missing, then scp fails with all sorts of nonsense.
 if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
-  screenfetch
+  screenfetch -w
 fi
 
 PS1=$(prompt)  # prompt func from `common/functions`
+PATH="$HOME/bin:$PATH"
+source "$HOME/.cargo/env"  # Add rust shit to path
 
 # Fire up tmux
 
