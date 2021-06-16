@@ -8,7 +8,17 @@
 ## Network Utils ##
 ###################
 
+function localip {
+  ifconfig | grep -A 1 'en0' | tail -1 | awk '{print $3}'
+}
+
 function tojakk {
+  ip=`localip`
+  if [[ ${ip} = 192.168.1.40 ]]; then
+    hstname=192.168.1.145
+  else
+    hstname=jakkso.com
+  fi
   dirFlag=""
   for arg in ${*%${!#}}; do
     if [[ -d $arg ]]; then
@@ -20,8 +30,9 @@ function tojakk {
   # https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
   # switching to just use download dir instead
   # scp $dirFlag  -P 45000 ${*%${!#}} lex@192.168.1.145:$last 
-  scp $dirFlag  -P 45000 "$@" lex@jakkso.com:/home/lex/downloads
+  scp $dirFlag  -P 45000 "$@" lex@$hstname:/home/lex/downloads
 }
+
 
 function fromjakk {
   scp -P 45000 lex@jakkso.com:$1 $2
@@ -34,16 +45,6 @@ function fromjakk {
 
 openSitePkgs() {
   cd /Users/Xander/.pyenv/versions/3.8.2/lib/python3.8/site-packages
-}
-
-localDeploy() {
-  if [[ "$1" = '' ||  $(! test -f "$1") ]]; then
-    echo "Missing file"
-    return
-  else
-    cp "$1" ~/bin
-    scp -P 45000 "$1" lex@192.168.1.64:/home/lex/bin
-  fi
 }
 
 
