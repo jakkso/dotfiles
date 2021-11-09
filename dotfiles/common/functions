@@ -60,9 +60,9 @@ gitBranch() {
 
 getHost() {
   if [[ `whoami` = root ]]; then
-    echo "$HOSTNAME - root"
+    echo "$(redBold)#root $(green)$HOSTNAME"
   else
-    echo $HOSTNAME
+    echo "$(green)$HOSTNAME"
   fi
 }
 
@@ -70,5 +70,5 @@ getHost() {
 # Prompt string, used in bash_profile
 prompt() {
  # The escaped $ prior to gitBranch means that gitBranch is called on each prompt redraw
- echo "$(green)`getHost` $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
+ echo "`getHost` $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
 }
