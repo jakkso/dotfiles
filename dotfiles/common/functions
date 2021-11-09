@@ -1,130 +1,5 @@
 #!/usr/bin/env bash
 
-###############
-## Utilities ##
-###############
-
-untar() {
-  item=`file $@`
-  case ${item} in
-    *"XZ compressed"*)
-      tar -xvf $@
-      ;;
-    *"gzip compress"*)
-      tar -zxvf $@
-      ;;
-    *)
-      echo "Is this a compressed file?"
-      echo ${item}
-      ;;
-  esac
-}
-
-mk() {
-  mkdir -p "$@" && cd "$@"
-}
-
-convertwebm () {
- ffmpeg -i $1 -vcodec  libvpx-vp9 -b:v 1M -acodec libvorbis $2
-}
-
- mp3() {
-   youtube-dl -f bestaudio -x --audio-format mp3 --audio-quality 0 -o '%(title)s.%(ext)s' $@
- }
-
-sizes() {
-  du -xhd1 | sort -n
-}
-
-weather() {
-  curl http://wttr.in/FNL
-}
-
-gifmaker() {
-  palette="/tmp/palette.png"
-  filters="fps=15,scale=320:-1:flags=lanczos"
-  ffmpeg -v warning -i $1 -vf "$filters,palettegen" -y $palette
-  ffmpeg -v warning -i $1 -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y $2
-}
-
-#############
-## Network ##
-#############
-
-localip() {
-  ifconfig | grep 'inet ' | grep -v 127.0.0.1
-}
-
-# Print external IP
-externalip() {
-  curl 'https://api.ipify.org'  && echo
-}
-
-portcheck() {
-    re='^[0-9]+$'
-    reserved=1024
-    for port in "$@"
-        do
-            if ! [[ ${port} =~ $re ]]; then
-                echo "Error: not a number: $port"
-            elif [[ ${port} -le ${reserved}  ]]; then
-                sudo lsof -nP -i4TCP:${port} | grep LISTEN
-            else
-                lsof -nP -i4TCP:${port} | grep LISTEN
-            fi
-        done
-}
-
-
-###############
-## Dev Tools ##
-###############
-
-gitinit() {
-  git init
-  touch .gitignore
-  git add .gitignore *
-}
-
-dvolume() {
-  local volume volumes_to_list=${1:-$(docker volume ls --quiet)}
-  for volume in ${volumes_to_list}; do
-    sudo ls -lRa "$(docker volume inspect --format '{{ .Mountpoint }}' "$volume")"
-    echo
-  done
-}
-
-# Print lines of code for files in current git directory
-loc() {
-  git ls-files | xargs wc -l
-}
-
-# Reload the shell (i.e. invoke as a login shell)
-reload() {
-  exec ${SHELL} -l
-}
-
-# Print each PATH entry on a separate line
-path() {
-  echo -e ${PATH//:/\\n}
-}
-
-loadrvm() {
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-}
-
-shebang() {
-  if [[ $1 = '' ]]; then
-    echo '#!/usr/bin/env '
-    return
-  fi
-  echo "#!/usr/bin/env $2" > $1 && chmod u+x $1 && ${EDITOR} $1
-}
-
-genUUID() {
- head -c 64 /dev/urandom | base64
-}
-
 ######################
 ## Prompt Functions ##
 ######################
@@ -183,8 +58,17 @@ gitBranch() {
   fi
 }
 
+getHost() {
+  if [[ `whoami` = root ]]; then
+    echo "$HOSTNAME - root"
+  else
+    echo $HOSTNAME
+  fi
+}
+
+
 # Prompt string, used in bash_profile
 prompt() {
  # The escaped $ prior to gitBranch means that gitBranch is called on each prompt redraw
- echo "$(green)\h $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
+ echo "$(green)`getHost` $(blueBold)\w $(redBold)\$(gitBranch)$(whiteBold)> $(colorDone) "
 }

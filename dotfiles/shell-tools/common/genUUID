@@ -1,0 +1,2 @@
+#!/usr/bin/env 
+head -c 64 /dev/urandom | base64

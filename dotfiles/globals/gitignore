@@ -45,6 +45,7 @@ Thumbs.db
 __pycache__/
 node_modules
 venv/*
+.venv/*
 .DocumentRevisions-V100
 .fseventsd
 .TemporaryItems

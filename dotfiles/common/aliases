@@ -46,9 +46,3 @@ alias sudo='sudo '
 #########
 
 alias gs="git status"
-
-###################
-## SSH Shortcuts ##
-###################
-alias pi='ssh pi'
-alias grape='ssh grape'

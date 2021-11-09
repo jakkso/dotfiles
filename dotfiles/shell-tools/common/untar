@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+item=`file $@`
+case ${item} in
+  *"XZ compressed"*)
+    tar -xvf $@
+    ;;
+  *"gzip compress"*)
+    tar -zxvf $@
+    ;;
+  *)
+    echo "Is this a compressed file?"
+    echo ${item}
+    ;;
+esac

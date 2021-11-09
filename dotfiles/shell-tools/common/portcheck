@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+re='^[0-9]+$'
+reserved=1024
+for port in "$@"
+    do
+        if ! [[ ${port} =~ $re ]]; then
+            echo "Error: not a number: $port"
+        elif [[ ${port} -le ${reserved}  ]]; then
+            sudo lsof -nP -i4TCP:${port} | grep LISTEN
+        else
+            lsof -nP -i4TCP:${port} | grep LISTEN
+        fi
+done
+

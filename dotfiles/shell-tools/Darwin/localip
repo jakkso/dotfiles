@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ifconfig | grep -A 1 'en0' | tail -1 | awk '{print $3}'

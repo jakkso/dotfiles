@@ -9,7 +9,8 @@ for file in `find ~/.dotfiles/$(uname -s)/`; do
 done	
 
 # Add $HOME/bin to path
-PATH="$HOME/bin:$PATH"
+#PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin:$HOME/.dotfiles/shell-tools/common:$HOME/.dotfiles/shell-tools/$(uname -s):$PATH"
 
 # Second condition checks if shell is interactive
 # If it's missing, then scp fails with all sorts of nonsense.

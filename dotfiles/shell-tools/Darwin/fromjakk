@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+scp -P 45000 lex@jakkso.com:$1 $2

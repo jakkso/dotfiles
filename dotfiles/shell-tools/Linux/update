@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+sudo apt update
+sudo apt upgrade -Y
+sudo apt autoremove -Y
+if [[ $1 == r ]]; then
+  sudo reboot now
+fi

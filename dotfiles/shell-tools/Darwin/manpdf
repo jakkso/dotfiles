@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+man -t "${1}" | open -f -a /System/Applications/Preview.app/

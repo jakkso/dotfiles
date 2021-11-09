@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+ip=`localip`
+if [[ ${ip} = 192.168.1.40 ]]; then
+  hstname=192.168.1.145
+else
+  hstname=jakkso.com
+fi
+dirFlag=""
+for arg in "$@"; do
+  if [[ -d $arg ]]; then
+    dirFlag="-r"
+    break
+  fi
+done
+# You can thank SO for this abomination: 
+# https://stackoverflow.com/questions/1215538/extract-parameters-before-last-parameter-in
+# if last arg doesn't exist xfer all to /home/lex/downloads else $HOME/downloads
+last=${@:$#}
+ # for last; do true; done
+ if [ $last = $1 ]; then
+   scp ${dirFlag} -P 45000 "$@" lex@${hstname}:/home/lex/downloads
+ elif [ ! -d $last ]; then
+   scp ${dirFlag}  -P 45000  ${*%${!#}} lex@${hstname}:${last}
+ else
+   scp ${dirFlag} -P 45000 "$@" lex@${hstname}:/home/lex/downloads
+fi

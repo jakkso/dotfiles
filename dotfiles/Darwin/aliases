@@ -2,7 +2,5 @@
 ## SSH Shortcuts ##
 ###################
 
-alias home='ssh jakkso'
 alias yarn='yarn --use-yarnrc $HOME/.config/yarn/config'
-#alias youtube-dl=youtube-dlc
 alias startEnv='source ~/.virtualenvs/`basename ~+`/bin/activate'
