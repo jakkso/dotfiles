@@ -6,7 +6,7 @@ done
 
 for file in `find ~/.dotfiles/$(uname -s)/`; do
 	[[ -f "$file" ]] && source "$file"
-done	
+done
 
 # Add $HOME/bin to path
 PATH="$HOME/bin:$HOME/.dotfiles/shell-tools/common:$HOME/.dotfiles/shell-tools/$(uname -s):$PATH"
@@ -17,7 +17,9 @@ if type screenfetch >/dev/null 2>&1 && [[ $- == *i* ]]; then
   screenfetch -w
 fi
 
-theme.sh mona-lisa
+if command -v theme.sh &> /dev/null; then
+  theme.sh mona-lisa
+fi
 PS1=$(prompt)  # prompt func from `common/functions`
 
 # Fire up tmux
