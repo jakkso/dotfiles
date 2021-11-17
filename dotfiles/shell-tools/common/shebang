@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 if [[ $1 = '' ]]; then
-s='#!/usr/bin/env '
-  if [[ `uname` = Darwin ]]; then
-    echo $s | pbcopy
-  fi
-echo $s  
-return
+  s='#!/usr/bin/env '
+    if [[ `uname` = Darwin ]]; then
+      echo $s | pbcopy
+    fi
+  echo $s  
+  exit 0
 fi
 echo "#!/usr/bin/env $2" > $1 && chmod u+x $1 && ${EDITOR} $1
