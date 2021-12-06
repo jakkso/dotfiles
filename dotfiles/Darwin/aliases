@@ -3,4 +3,5 @@
 ###################
 
 alias yarn='yarn --use-yarnrc $HOME/.config/yarn/config'
-alias startEnv='source ~/.virtualenvs/`basename ~+`/bin/activate'
+#alias startEnv='source ~/.virtualenvs/`basename ~+`/bin/activate'
+alias startEnv='if [[ -d .venv ]]; then source .venv/bin/activate else source ~/.virtualenvs/`basename ~+`/bin/activate; fi'
